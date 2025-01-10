@@ -68,6 +68,9 @@ The code employs dynamic memory allocation to create `Process` objects. Each pro
 
 The program includes two functions (that you will implement), `searchProcessById` and `kill`, designed for searching and deleting processes by ID. The `searchProcessById` function is intended to iterate over the process list and return a pointer to the process matching a given ID. Similarly, the `kill` function is designed to remove a process with a specified ID from the list and free its memory.
 
+NOTE:
+In C++ it is common to see `using namespace std;` at the beginning of a C++ program. It is used to simplify the code when working with the Standard Library (std) so that we do not have to prefix std functions with `std::`. 
+
 ```cpp
 #include <iostream>
 #include <list>
