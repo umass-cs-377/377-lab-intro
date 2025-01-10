@@ -59,3 +59,93 @@ int main() {
     return 0;
 }
 ```
+## Part 2
+This code demonstrates several important programming concepts in C++, including dynamic memory management, the use of Standard Template Library (STL) containers, the definition and manipulation of custom data structures, and the design of modular and reusable functions for managing data. Each concept is implemented in a structured way to build a simple process management system. 
+
+The `Process` struct defines a custom data structure that models a process in a system (we will talk more about this in the lecture). It includes fields for a process ID (pid), name (the name of the process), and status (in what state the process is in). These attributes encapsulate the essential characteristics of a process, making it easy to manage and manipulate process data. By using macros (#define), the code also defines constants for common process statuses like Running, Stopped, and Terminated.
+
+The code employs dynamic memory allocation to create `Process` objects. Each process is allocated memory using the `new` operator and stored as a pointer in a `list`. This dynamic approach allows the program to manage memory efficiently for an arbitrary number of processes. However, dynamic memory allocation requires careful management to avoid memory leaks. The program addresses this by explicitly deleting each process object in a cleanup step at the end of the main function.
+
+The program includes two functions (that you will implement), `searchProcessById` and `kill`, designed for searching and deleting processes by ID. The `searchProcessById` function is intended to iterate over the process list and return a pointer to the process matching a given ID. Similarly, the `kill` function is designed to remove a process with a specified ID from the list and free its memory.
+
+```cpp
+#include <iostream>
+#include <list>
+#include <string>
+
+using namespace std;
+
+// Define status macros
+#define STATUS_RUNNING "Running"
+#define STATUS_STOPPED "Stopped"
+#define STATUS_TERMINATED "Terminated"
+
+// Define the Process struct
+struct Process {
+    int pid;
+    string name;
+    string status;
+};
+
+// Function to search for a process by ID
+Process* searchProcessById(const list<Process*>& processList, int pid) {
+    //TODO find by id 
+    return nullptr; // Return nullptr if not found
+}
+
+// Function to delete a process by ID
+bool kill(list<Process*>& processList, int pid) {
+    // TODO delete by id
+    return false; // Process not found
+}
+
+int main() {
+    // List to hold pointers to Process objects
+    list<Process*> processList;
+
+    // Create processes and add pointers to the list
+    processList.push_back(new Process{1, "Process1", STATUS_RUNNING});
+    processList.push_back(new Process{2, "Process2", STATUS_STOPPED});
+    processList.push_back(new Process{3, "Process3", STATUS_RUNNING});
+    processList.push_back(new Process{4, "Process4", STATUS_TERMINATED});
+    processList.push_back(new Process{5, "Process5", STATUS_RUNNING});
+    processList.push_back(new Process{6, "Process6", STATUS_STOPPED});
+    processList.push_back(new Process{7, "Process7", STATUS_RUNNING});
+    processList.push_back(new Process{8, "Process8", STATUS_TERMINATED});
+    processList.push_back(new Process{9, "Process9", STATUS_STOPPED});
+    processList.push_back(new Process{10, "Process10", STATUS_RUNNING});
+
+    // Iterate through the list and print process details
+    cout << "List of Processes:\n";
+    for (const auto& process : processList) {
+        cout << "Process ID: " << process->pid << ", Name: " << process->name << endl;
+    }
+
+    // Search for a process by ID
+    int searchId = 2;
+    Process* foundProcess = searchProcessById(processList, searchId);
+    if (foundProcess) {
+        cout << "Found Process - ID: " << foundProcess->pid << ", Name: " << foundProcess->name << ", Status: " << foundProcess->status << endl;
+    } else {
+        cout << "Process with ID " << searchId << " not found." << endl;
+    }
+
+    // Delete a process by ID
+    int deleteId = 5;
+    if (kill(processList, deleteId)) {
+        cout << "Process with ID " << deleteId << " deleted successfully." << endl;
+    } else {
+        cout << "Process with ID " << deleteId << " not found for deletion." << endl;
+    }
+
+    // Clean up dynamically allocated memory
+    for (auto& process : processList) {
+        delete process;
+    }
+
+    return 0;
+}
+```
+
+
+
