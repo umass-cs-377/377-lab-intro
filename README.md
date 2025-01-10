@@ -28,6 +28,9 @@ This repo includes a Makefile that allows you to locally compile and run all the
 
 
 ## Part 1 
+This C++ program is a simple utility that retrieves and displays the current user's username and the hostname of the machine on which it is running. It achieves this by accessing environment variables for the username and using the `gethostnam` function to fetch the machine's hostname. The program ensures compatibility across Unix-like systems and Windows, making it a versatile tool for system diagnostics or personal use.
+
+The program first attempts to retrieve the username from the `USER` environment variable, which is standard on Unix-like systems. If this variable is unavailable, it checks the `USERNAME` variable, commonly used on Windows systems. For the hostname, the program uses the `gethostname` function from the `unistd.h` library to populate a character array. It also includes basic error handling to display an error message if the hostname retrieval fails.
 
 
 ```cpp
