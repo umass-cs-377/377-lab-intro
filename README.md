@@ -8,7 +8,7 @@ During the lab, the TA will provide a brief overview of the different sections, 
 
 Please read through this lab and follow the instructions. After you do that, visit Gradescope and complete the questions associated with this lab by the assigned due date.
 
-**You may work in groups up to 3 to complete this lab. Make sure you submit as a group in Gradescope.**
+**You may work in groups up to 4 to complete this lab. Make sure you submit as a group in Gradescope.**
 
 ## Setup
 
